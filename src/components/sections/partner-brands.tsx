@@ -2,6 +2,7 @@ import { motion, useReducedMotion } from "framer-motion"
 import { ArrowRight, ShieldCheck } from "lucide-react"
 
 import { BrandNetwork } from "@/components/ui/brand-network"
+import { Button } from "@/components/ui/button"
 
 const featuredBrands = [
   "Sony",
@@ -71,12 +72,11 @@ function PartnerBrands() {
               </p>
             </div>
 
-            <a
-              href="#contact"
-              className="inline-flex w-fit shrink-0 items-center gap-2 rounded-full bg-kolam-gold px-5 py-3 font-body text-base font-bold text-deep-navy shadow-[0_5px_0_#14233f] transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-rathna-blue/25"
-            >
-              Ask about a brand <ArrowRight className="size-4" />
-            </a>
+            <Button asChild size="lg" className="w-fit">
+              <a href="#contact">
+                Ask about a brand <ArrowRight />
+              </a>
+            </Button>
           </div>
         </div>
       </div>

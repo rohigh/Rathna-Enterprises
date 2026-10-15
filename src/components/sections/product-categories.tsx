@@ -19,6 +19,7 @@ import {
   type LucideIcon,
 } from "lucide-react"
 
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 type CategoryGroup =
@@ -545,12 +546,11 @@ function ProductCategories() {
               If a home needs it, we probably have it—or we will help you find it.
             </p>
           </div>
-          <a
-            href="#contact"
-            className="inline-flex shrink-0 items-center gap-2 rounded-full bg-kolam-gold px-5 py-3 font-body text-base font-bold text-deep-navy shadow-[0_5px_0_#14233f] transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-rathna-blue/25"
-          >
-            Ask Rathna <ArrowRight className="size-4" />
-          </a>
+          <Button asChild size="lg">
+            <a href="#contact">
+              Ask Rathna <ArrowRight />
+            </a>
+          </Button>
         </div>
       </div>
     </section>
