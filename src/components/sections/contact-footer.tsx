@@ -22,18 +22,18 @@ function ContactFooter() {
       ]}
       navigation={[
         [
-          { label: "Home", href: "#home" },
-          { label: "Why Rathna", href: "#why-rathna" },
-          { label: "About", href: "#about" },
+          { label: "Home", href: "/#home" },
+          { label: "Why Rathna", href: "/#why-rathna" },
+          { label: "About", href: "/#about" },
         ],
         [
-          { label: "Products", href: "#products" },
-          { label: "Brands", href: "#brands" },
-          { label: "Blogs", href: "#blogs" },
+          { label: "Products", href: "/#products" },
+          { label: "Brands", href: "/#brands" },
+          { label: "Blogs", href: "/#blogs" },
         ],
         [
-          { label: "Branches", href: "#branches" },
-          { label: "Contact", href: "#contact" },
+          { label: "Branches", href: "/#branches" },
+          { label: "Contact", href: "/#contact" },
         ],
       ]}
       actionLinks={[

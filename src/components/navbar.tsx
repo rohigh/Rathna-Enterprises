@@ -6,11 +6,11 @@ import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 const links = [
-  { label: "About", href: "#about" },
-  { label: "Products", href: "#products" },
-  { label: "Brands", href: "#brands" },
-  { label: "Blogs", href: "#blogs" },
-  { label: "Branches", href: "#branches" },
+  { label: "About", href: "/#about" },
+  { label: "Products", href: "/#products" },
+  { label: "Brands", href: "/#brands" },
+  { label: "Blogs", href: "/#blogs" },
+  { label: "Branches", href: "/#branches" },
 ]
 
 function BrandMark() {
@@ -81,7 +81,7 @@ function Navbar() {
       >
         <div className="flex min-h-16 items-center justify-between gap-5 px-2.5 py-2.5 pl-4 min-[881px]:min-h-[66px] min-[881px]:px-3 min-[881px]:pl-[22px]">
           <a
-            href="#home"
+            href="/#home"
             aria-label="Rathna Enterprises home"
             className="inline-flex shrink-0 items-center gap-2.5 font-display text-[1rem] font-bold leading-none tracking-[-0.025em] text-rathna-blue sm:text-[1.12rem]"
             onClick={() => setIsOpen(false)}
@@ -105,7 +105,7 @@ function Navbar() {
           </div>
 
           <Button asChild className="hidden min-[881px]:inline-flex">
-            <a href="#contact">
+            <a href="/#contact">
               Contact us <ArrowRight />
             </a>
           </Button>
@@ -147,7 +147,7 @@ function Navbar() {
                   </a>
                 ))}
                 <Button asChild className="mt-5 self-start">
-                  <a href="#contact" onClick={() => setIsOpen(false)}>
+                  <a href="/#contact" onClick={() => setIsOpen(false)}>
                     Contact us <ArrowRight />
                   </a>
                 </Button>
