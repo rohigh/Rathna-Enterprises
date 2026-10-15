@@ -10,6 +10,8 @@ import {
   ShieldCheck,
 } from "lucide-react"
 
+import { Button } from "@/components/ui/button"
+
 const phonePrimary = "+919445623111"
 const mainDirections =
   "https://www.google.com/maps/search/?api=1&query=Rathna+Enterprises+103+Hospital+Road+Maduranthakam+Tamil+Nadu+603306"
@@ -163,14 +165,11 @@ function VisitBranches() {
                 </p>
 
                 <div className="mt-7 flex flex-wrap gap-3">
-                  <a
-                    href={mainDirections}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full bg-kolam-gold px-5 py-3 font-body text-base font-bold text-deep-navy shadow-[0_5px_0_#14233f] transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-rathna-blue/25"
-                  >
-                    Get directions <Navigation className="size-4" />
-                  </a>
+                  <Button asChild size="lg">
+                    <a href={mainDirections} target="_blank" rel="noreferrer">
+                      Get directions <Navigation />
+                    </a>
+                  </Button>
                   <a
                     href={`tel:${phonePrimary}`}
                     className="inline-flex items-center gap-2 rounded-full border border-rathna-blue/18 bg-pearl-white/80 px-5 py-3 font-body text-base font-bold text-rathna-blue transition-colors hover:bg-rathna-blue hover:text-pearl-white focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-rathna-blue/25"
@@ -196,13 +195,11 @@ function VisitBranches() {
                   Call our team for the quickest route and to check which branch has the product you want in stock.
                 </p>
 
-                <a
-                  href={`tel:${phonePrimary}`}
-                  style={{ color: "#1e4fa3" }}
-                  className="mt-7 inline-flex items-center gap-2 rounded-full border border-pearl-white/20 bg-pearl-white px-5 py-3 font-body text-base font-bold text-rathna-blue shadow-[0_5px_0_#e5a63a] transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-pearl-white/40"
-                >
-                  Ask for directions <ArrowRight className="size-4" />
-                </a>
+                <Button asChild size="lg" className="mt-7">
+                  <a href={`tel:${phonePrimary}`}>
+                    Ask for directions <ArrowRight />
+                  </a>
+                </Button>
               </div>
             </article>
           </div>
