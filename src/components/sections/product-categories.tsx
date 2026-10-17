@@ -265,7 +265,6 @@ function CategoryCard({
 
   return (
     <motion.article
-      layout={!prefersReducedMotion}
       initial={prefersReducedMotion ? false : { opacity: 0, y: 18 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.97 }}
@@ -293,13 +292,16 @@ function CategoryCard({
         strokeWidth={1.1}
       />
 
-      <button
-        type="button"
-        className="relative flex min-h-[260px] w-full flex-col p-6 text-left outline-none focus-visible:ring-[3px] focus-visible:ring-inset focus-visible:ring-kolam-gold/70 sm:p-7"
-        aria-expanded={isOpen}
-        aria-controls={panelId}
-        onClick={onToggle}
-      >
+      <div className="relative flex min-h-[260px] w-full flex-col p-6 text-left sm:p-7">
+        <button
+          type="button"
+          className="absolute inset-0 z-20 rounded-[26px] outline-none focus-visible:ring-[3px] focus-visible:ring-inset focus-visible:ring-kolam-gold/70"
+          aria-label={`${isOpen ? "Hide" : "Show"} ${category.title} details`}
+          aria-expanded={isOpen}
+          aria-controls={panelId}
+          onClick={onToggle}
+        />
+
         <div className="flex items-start justify-between gap-4">
           <div
             className={cn(
@@ -311,7 +313,7 @@ function CategoryCard({
                   : "bg-sky-tint text-rathna-blue",
             )}
           >
-            <category.Icon className="size-[22px]" strokeWidth={1.8} />
+            <category.Icon aria-hidden="true" className="size-[22px]" strokeWidth={1.8} />
           </div>
           <span
             className={cn(
@@ -373,7 +375,7 @@ function CategoryCard({
             <ChevronDown className="size-4" />
           </span>
         </div>
-      </button>
+      </div>
 
       <AnimatePresence initial={false}>
         {isOpen && (
@@ -399,9 +401,9 @@ function CategoryCard({
               >
                 {category.description}
               </p>
-              <div className="mt-4 flex flex-wrap gap-2" aria-label="Products included">
+              <ul className="mt-4 flex flex-wrap gap-2" aria-label="Products included">
                 {category.includes.map((item) => (
-                  <span
+                  <li
                     key={item}
                     className={cn(
                       "rounded-full border px-3 py-1.5 font-body text-sm font-bold",
@@ -411,9 +413,9 @@ function CategoryCard({
                     )}
                   >
                     {item}
-                  </span>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
           </motion.div>
         )}
@@ -518,11 +520,8 @@ function ProductCategories() {
           })}
         </div>
 
-        <motion.div
-          layout={!prefersReducedMotion}
-          className="mt-6 grid grid-cols-1 gap-4 [grid-auto-flow:dense] md:grid-cols-2 xl:grid-cols-3"
-        >
-          <AnimatePresence mode="popLayout" initial={false}>
+        <div className="mt-6 grid grid-cols-1 gap-4 [grid-auto-flow:dense] md:grid-cols-2 xl:grid-cols-3">
+          <AnimatePresence initial={false}>
             {filteredCategories.map((category, index) => (
               <CategoryCard
                 key={category.id}
@@ -535,7 +534,7 @@ function ProductCategories() {
               />
             ))}
           </AnimatePresence>
-        </motion.div>
+        </div>
 
         <div className="mt-6 flex flex-col items-start justify-between gap-5 rounded-[26px] border border-rathna-blue/12 bg-pearl-white/75 p-6 backdrop-blur-sm sm:flex-row sm:items-center sm:p-7">
           <div>

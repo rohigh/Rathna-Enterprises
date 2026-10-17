@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useRef, useState } from "react"
 import { motion, useReducedMotion } from "framer-motion"
 import {
   BadgeIndianRupee,
@@ -63,20 +63,17 @@ function WhyRathna() {
   const cardRefs = useRef<Array<HTMLButtonElement | null>>([])
   const prefersReducedMotion = useReducedMotion()
 
-  useEffect(() => {
-    const track = trackRef.current
-    const card = cardRefs.current[activeIndex]
+  const selectReason = (index: number) => {
+    setActiveIndex(index)
 
-    if (!track || !card) return
-
-    const cardCenter = card.offsetLeft + card.offsetWidth / 2
-    const nextScrollPosition = cardCenter - track.clientWidth / 2
-
-    track.scrollTo({
-      left: nextScrollPosition,
-      behavior: prefersReducedMotion ? "auto" : "smooth",
+    window.requestAnimationFrame(() => {
+      cardRefs.current[index]?.scrollIntoView({
+        behavior: prefersReducedMotion ? "auto" : "smooth",
+        block: "nearest",
+        inline: "center",
+      })
     })
-  }, [activeIndex, prefersReducedMotion])
+  }
 
   return (
     <section
@@ -121,33 +118,36 @@ function WhyRathna() {
               const isActive = activeIndex === index
 
               return (
-                <motion.button
+                <article
                   key={title}
-                  ref={(element) => {
-                    cardRefs.current[index] = element
-                  }}
-                  type="button"
-                  layout
-                  aria-pressed={isActive}
                   className={cn(
                     "group relative flex min-h-[260px] shrink-0 snap-center flex-col overflow-hidden rounded-[24px] border p-6 text-left outline-none transition-colors focus-visible:ring-[3px] focus-visible:ring-rathna-blue/25 sm:p-7",
                     isActive
                       ? "w-[78vw] max-w-[300px] border-rathna-blue bg-rathna-blue text-pearl-white shadow-[0_20px_55px_rgba(20,35,63,0.2)] min-[900px]:min-h-[294px] min-[900px]:w-[264px]"
                       : "w-[72vw] max-w-[260px] border-rathna-blue/10 bg-pearl-white/90 text-deep-navy shadow-[0_10px_30px_rgba(20,35,63,0.08)] hover:border-rathna-blue/25 hover:bg-pearl-white min-[900px]:w-[210px]",
                   )}
-                  transition={{ type: "spring", stiffness: 250, damping: 28 }}
-                  onClick={() => setActiveIndex(index)}
                 >
+                  <button
+                    ref={(element) => {
+                      cardRefs.current[index] = element
+                    }}
+                    type="button"
+                    aria-label={`Show reason ${index + 1}: ${title}`}
+                    aria-pressed={isActive}
+                    className="absolute inset-0 z-20 rounded-[24px] outline-none focus-visible:ring-[3px] focus-visible:ring-inset focus-visible:ring-kolam-gold/75"
+                    onClick={() => selectReason(index)}
+                  />
+
                   <div
                     className={cn(
-                      "absolute right-5 top-5 font-display text-sm font-semibold tracking-[0.12em]",
+                      "pointer-events-none absolute right-5 top-5 font-display text-sm font-semibold tracking-[0.12em]",
                       isActive ? "text-pearl-white/60" : "text-rathna-blue/45",
                     )}
                   >
                     {String(index + 1).padStart(2, "0")}
                   </div>
 
-                  <div className="max-w-[15rem] pr-5">
+                  <div className="pointer-events-none max-w-[15rem] pr-5">
                     <h3 className="font-display text-[1.35rem] font-semibold leading-[1.08] tracking-[-0.025em]">
                       {title}
                     </h3>
@@ -163,7 +163,7 @@ function WhyRathna() {
 
                   <div
                     className={cn(
-                      "mt-auto grid size-11 place-items-center rounded-xl transition-colors",
+                      "pointer-events-none mt-auto grid size-11 place-items-center rounded-xl transition-colors",
                       isActive
                         ? "bg-kolam-gold text-deep-navy"
                         : "bg-sky-tint text-rathna-blue group-hover:bg-kolam-gold/25",
@@ -173,12 +173,12 @@ function WhyRathna() {
                   </div>
 
                   {isActive && (
-                    <motion.div
-                      layoutId="reason-card-accent"
+                    <div
+                      aria-hidden="true"
                       className="absolute inset-x-6 bottom-0 h-1 rounded-t-full bg-kolam-gold"
                     />
                   )}
-                </motion.button>
+                </article>
               )
             })}
           </div>
@@ -200,7 +200,7 @@ function WhyRathna() {
                       ? "border-deep-navy bg-deep-navy text-pearl-white shadow-[0_7px_16px_rgba(20,35,63,0.18)]"
                       : "border-rathna-blue/15 bg-pearl-white text-rathna-blue hover:border-rathna-blue/35",
                   )}
-                  onClick={() => setActiveIndex(index)}
+                  onClick={() => selectReason(index)}
                 >
                   {String(index + 1).padStart(2, "0")}
                 </button>

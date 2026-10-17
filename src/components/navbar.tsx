@@ -45,7 +45,15 @@ function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 28)
+    let scrollFrame = 0
+    const updateScrollState = () => {
+      scrollFrame = 0
+      setIsScrolled(window.scrollY > 28)
+    }
+    const handleScroll = () => {
+      if (scrollFrame) return
+      scrollFrame = window.requestAnimationFrame(updateScrollState)
+    }
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") setIsOpen(false)
     }
@@ -62,15 +70,14 @@ function Navbar() {
       window.removeEventListener("scroll", handleScroll)
       window.removeEventListener("keydown", handleKeyDown)
       window.removeEventListener("resize", handleResize)
+      if (scrollFrame) window.cancelAnimationFrame(scrollFrame)
     }
   }, [])
 
   return (
     <header className="pointer-events-none fixed inset-x-0 top-0 z-50 px-4 pt-3.5 sm:px-6 min-[881px]:px-10 min-[881px]:pt-[22px]">
-      <motion.nav
+      <nav
         aria-label="Primary navigation"
-        layout
-        transition={{ type: "spring", stiffness: 260, damping: 30 }}
         className={cn(
           "pointer-events-auto mx-auto w-full overflow-hidden border border-deep-navy/10 bg-pearl-white/95 text-deep-navy shadow-[0_10px_40px_rgba(20,35,63,0.09)] backdrop-blur-xl transition-[max-width,box-shadow] duration-300",
           "max-w-[430px] rounded-[22px] min-[881px]:max-w-[1100px] min-[881px]:rounded-full",
@@ -155,7 +162,7 @@ function Navbar() {
             </motion.div>
           )}
         </AnimatePresence>
-      </motion.nav>
+      </nav>
     </header>
   )
 }

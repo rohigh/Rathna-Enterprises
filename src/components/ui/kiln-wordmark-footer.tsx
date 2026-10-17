@@ -164,20 +164,6 @@ function KilnWordmarkFooter({
     return () => observer.disconnect()
   }, [])
 
-  const handlePointerMove = (event: React.PointerEvent<HTMLElement>) => {
-    if (event.pointerType === "touch") return
-    const rect = event.currentTarget.getBoundingClientRect()
-    const x = ((event.clientX - rect.left) / rect.width - 0.5) * 26
-    const y = ((event.clientY - rect.top) / rect.height - 0.5) * 34
-    event.currentTarget.style.setProperty("--kwf-px", `${x}px`)
-    event.currentTarget.style.setProperty("--kwf-py", `${y}px`)
-  }
-
-  const handlePointerLeave = (event: React.PointerEvent<HTMLElement>) => {
-    event.currentTarget.style.setProperty("--kwf-px", "0px")
-    event.currentTarget.style.setProperty("--kwf-py", "0px")
-  }
-
   const handlePanelClick = (event: React.MouseEvent<HTMLElement>) => {
     if ((event.target as Element).closest("a,button")) return
     if (window.getSelection()?.toString()) return
@@ -212,8 +198,6 @@ function KilnWordmarkFooter({
       ref={rootRef}
       className={`kwf${shown ? " kwf-shown" : ""}${className ? ` ${className}` : ""}`}
       style={variables}
-      onPointerMove={handlePointerMove}
-      onPointerLeave={handlePointerLeave}
       onClick={handlePanelClick}
     >
       <style>{styles}</style>
@@ -282,7 +266,7 @@ function KilnWordmarkFooter({
           </div>
         </div>
 
-        <p className="kwf-word" aria-label={wordmark}>
+        <div className="kwf-word" role="img" aria-label={`${wordmark} wordmark`}>
           {[...wordmark.toLowerCase()].map((letter, index) => (
             <span
               key={`${letter}-${index}`}
@@ -293,7 +277,7 @@ function KilnWordmarkFooter({
               {letter === " " ? "\u00A0" : letter}
             </span>
           ))}
-        </p>
+        </div>
 
         <div className="kwf-bar kwf-fade" style={reveal()}>
           <p className="kwf-copy">©{year} {brand}</p>
