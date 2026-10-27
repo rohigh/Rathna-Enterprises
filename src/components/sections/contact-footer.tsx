@@ -1,7 +1,7 @@
 import { KilnWordmarkFooter } from "@/components/ui/kiln-wordmark-footer"
 
-const phonePrimary = "+919445623111"
-const email = "rathnasuthakar@gmail.com"
+const phonePrimary = "+919487553811"
+const email = "contact@rathnaenterprises.com"
 
 function ContactFooter() {
   return (
@@ -15,9 +15,7 @@ function ContactFooter() {
         "Tamil Nadu 603306",
       ]}
       contactLinks={[
-        { label: "+91 94456 23111", href: `tel:${phonePrimary}` },
-        { label: "+91 94432 53111", href: "tel:+919443253111" },
-        { label: "044 2755 3111", href: "tel:+914427553111" },
+        { label: "+91 94875 53811", href: `tel:${phonePrimary}` },
         { label: email, href: `mailto:${email}` },
       ]}
       navigation={[

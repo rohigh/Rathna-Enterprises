@@ -12,7 +12,7 @@ import {
 
 import { Button } from "@/components/ui/button"
 
-const phonePrimary = "+919445623111"
+const phonePrimary = "+919487553811"
 const mainDirections =
   "https://www.google.com/maps/search/?api=1&query=Rathna+Enterprises+103+Hospital+Road+Maduranthakam+Tamil+Nadu+603306"
 
