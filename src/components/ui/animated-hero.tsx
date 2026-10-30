@@ -3,6 +3,7 @@ import { motion, useReducedMotion } from "framer-motion"
 import { ArrowDown, MessageCircle, PhoneCall } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
+import heroLogo from "../../../img/Rathna Enterprises (2).png"
 
 function KolamBloom({ className = "" }: { className?: string }) {
   return (
@@ -76,6 +77,23 @@ function Hero() {
       </motion.div>
 
       <div className="mx-auto flex w-full max-w-6xl flex-col items-center text-center">
+        <motion.div
+          role="img"
+          aria-label="Rathna Enterprises — Sign of Trust, since 1981"
+          className="relative mb-5 aspect-[1000/705] w-[min(78vw,310px)] overflow-hidden sm:mb-6 sm:w-[320px] lg:w-[350px]"
+          initial={prefersReducedMotion ? false : { opacity: 0, y: 16, scale: 0.96 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <img
+            src={heroLogo}
+            alt=""
+            draggable={false}
+            fetchPriority="high"
+            className="pointer-events-none absolute left-1/2 top-1/2 w-[192%] max-w-none -translate-x-1/2 -translate-y-1/2 select-none"
+          />
+        </motion.div>
+
         <motion.div
           initial={prefersReducedMotion ? false : { opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
