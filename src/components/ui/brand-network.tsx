@@ -13,6 +13,8 @@ import {
   type SimpleIcon,
 } from "simple-icons"
 
+import { RathnaLogo } from "@/components/ui/rathna-logo"
+
 type BrandItem = {
   id: string
   name: string
@@ -164,21 +166,8 @@ function BrandLogo({ brand }: { brand: BrandItem }) {
 
 function RathnaMark() {
   return (
-    <div className="flex items-center gap-3 rounded-2xl border border-rathna-blue/14 bg-pearl-white px-4 py-3 shadow-[0_14px_35px_rgba(20,35,63,0.14)] sm:gap-4 sm:px-5 sm:py-4 lg:gap-5 lg:px-6 lg:py-5">
-      <span className="grid size-10 shrink-0 place-items-center rounded-full bg-rathna-blue text-kolam-gold sm:size-12 lg:size-14">
-        <svg aria-hidden="true" viewBox="0 0 32 32" fill="none" className="size-7 sm:size-8 lg:size-9">
-          <path
-            d="M16 2.75v26.5M2.75 16h26.5M6.63 6.63l18.74 18.74M25.37 6.63 6.63 25.37"
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeWidth="1.8"
-          />
-          <circle cx="16" cy="16" r="5.25" stroke="currentColor" strokeWidth="1.8" />
-        </svg>
-      </span>
-      <span className="font-display text-base font-bold leading-none tracking-[-0.025em] text-rathna-blue sm:text-xl lg:text-2xl">
-        Rathna
-      </span>
+    <div className="flex items-center justify-center rounded-2xl border border-rathna-blue/14 bg-pearl-white px-3 py-2.5 shadow-[0_14px_35px_rgba(20,35,63,0.14)] sm:px-4 sm:py-3 lg:px-5 lg:py-4">
+      <RathnaLogo className="w-16 sm:w-[76px] lg:w-24" />
     </div>
   )
 }

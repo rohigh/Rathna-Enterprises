@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "framer-motion"
 import { ArrowRight, Menu, X } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
+import { RathnaLogo } from "@/components/ui/rathna-logo"
 import { cn } from "@/lib/utils"
 
 const links = [
@@ -12,33 +13,6 @@ const links = [
   { label: "Blogs", href: "/#blogs" },
   { label: "Branches", href: "/#branches" },
 ]
-
-function BrandMark() {
-  return (
-    <span className="grid size-[30px] shrink-0 place-items-center rounded-full bg-rathna-blue text-kolam-gold">
-      <svg
-        aria-hidden="true"
-        className="size-5 overflow-visible"
-        viewBox="0 0 32 32"
-        fill="none"
-      >
-        <path
-          d="M16 2.75v26.5M2.75 16h26.5M6.63 6.63l18.74 18.74M25.37 6.63 6.63 25.37"
-          stroke="currentColor"
-          strokeLinecap="round"
-          strokeWidth="1.8"
-        />
-        <circle
-          cx="16"
-          cy="16"
-          r="5.25"
-          stroke="currentColor"
-          strokeWidth="1.8"
-        />
-      </svg>
-    </span>
-  )
-}
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -93,7 +67,7 @@ function Navbar() {
             className="inline-flex shrink-0 items-center gap-2.5 font-display text-[1rem] font-bold leading-none tracking-[-0.025em] text-rathna-blue sm:text-[1.12rem]"
             onClick={() => setIsOpen(false)}
           >
-            <BrandMark />
+            <RathnaLogo decorative className="w-[39px] sm:w-[42px]" />
             <span>
               Rathna <span className="font-medium">Enterprises</span>
             </span>
